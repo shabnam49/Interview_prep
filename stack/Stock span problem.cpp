@@ -82,6 +82,38 @@ int main()
         return 0;
     }
 
+// with using stack and same approach as above but compact code
 
+#include <iostream>
+#include <vector>
+#include <stack>
+#define ll long long
+using namespace std;
+
+int main()
+{
+	int t, n;
+	cin >> t;
+	while(t--) {
+	    cin >> n;
+	    vector <ll> arr(n), ans(n);
+	    
+	    for(int i = 0; i < n; i++)
+	            cin >> arr[i];
+	    stack <pair<ll,int>> s;
+	    for(int i = 0; i < n; i++) {
+	        while(!s.empty() && s.top().first <= arr[i])
+	            s.pop();
+	        ans[i] = s.empty() ? -1 : s.top().second;
+	        s.push({arr[i],i});
+	    }
+	    for(int i = 0; i < n; i++) ans[i] = i - ans[i];
+	    
+	    for(int i = 0; i < n; i++)
+	        cout << ans[i] << " ";
+	    cout << endl;
+	}
+	return 0;
+}
 
 
